@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 var Jimp = require("jimp");
-//const SQLite = require("better-sqlite3");
-//const sql = new SQLite('./profile.sqlite');
+const SQLite = require("better-sqlite3");
+const sql = new SQLite('./profile.sqlite');
 bot.commands = new Discord.Collection();
 
 
@@ -42,7 +42,7 @@ fs.readdir("./others/", (err, files) => {
 });
 
 bot.on("ready", async () => {
-  bot.user.setUsername("lǦ̩̥ officiel bot");
+  //bot.user.setUsername("lǦ̩̥ officiel bot");
   console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
   bot.user.setActivity('lg server #شرح', {type: "PLAYING"});
   const profile = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'profile';").get();
@@ -157,4 +157,4 @@ let about = sql.prepare(`SELECT * FROM about WHERE UserID = '${message.author.id
 
 });
 
-bot.login("NzM5MjMxODI3ODUxNzM5MjU4.XyXdSg.GtTU_zuxVS1jw-4tYqw7mJ37Kwo");
+bot.login("NjU1MDczMTk5MTAwNTI2NjAy.XfOydQ.wZoTQ2qeg81WHLq4yehlMZ0WJ0w");
