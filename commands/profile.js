@@ -295,7 +295,7 @@ fs.readFile(curbg, async function (err, Background) {
 
 })
 
-jimp.read('./img/profileme1.png',async function (err, ava) {
+jimp.read('./img/profileme2.png',async function (err, ava) {
     if (err) return console.log(err);
     ava.getBuffer(jimp.MIME_PNG,async function (err, buffprof) {
         if (err) return console.log(err);
@@ -435,5 +435,5 @@ talkedRecently.add(message.author.id);
     
         }
 module.exports.help = {
-  name:"بروفايل"
+  name:"profile"
 }
