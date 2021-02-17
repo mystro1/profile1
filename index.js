@@ -8,8 +8,6 @@ const sql = new SQLite('./profile.sqlite');
 bot.commands = new Discord.Collection();
 
 
-
-
 fs.readdir("./commands/", (err, files) => {
 
   if(err) console.log(err);
@@ -42,28 +40,25 @@ fs.readdir("./others/", (err, files) => {
 });
 
 bot.on("ready", async () => {
-  //bot.user.setUsername("lǦ̩̥ officiel bot");
-  console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-  bot.user.setActivity('lg server #شرح', {type: "PLAYING"});
   const profile = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'profile';").get();
   if (!profile['count(*)']) {
-    // If the table isn't there, create it and setup the database correctly.
+    
     sql.prepare("CREATE TABLE profile (UserID TEXT PRIMARY KEY, GuildID TEXT, xp INTEGER, lvl INTEGER, coins INTEGER, bg INTEGER, note TEXT, likes INTEGER, rep INTEGER, w0 INTEGER, w1 INTEGER, w2 INTEGER, w3 INTEGER, w4 INTEGER, w5 INTEGER);").run();
   }
   const rep = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'rep';").get();
   if (!rep['count(*)']) {
-    // If the table isn't there, create it and setup the database correctly.
+    
     sql.prepare("CREATE TABLE rep (UserID, LikedUser TEXT PRIMARY KEY, GuildID TEXT, Time TEXT);").run();
   }
   const liked = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'liked';").get();
   if (!liked['count(*)']) {
-    // If the table isn't there, create it and setup the database correctly.
+    
     sql.prepare("CREATE TABLE liked (UserID, LikedUser TEXT PRIMARY KEY, GuildID TEXT, Time TEXT);").run();
   }
 
   const about = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'about';").get();
   if (!about['count(*)']) {
-    // If the table isn't there, create it and setup the database correctly.
+    
     sql.prepare("CREATE TABLE about (UserID TEXT PRIMARY KEY, career TEXT, age TEXT, club TEXT, model TEXT, study TEXT, future TEXT, life TEXT, words TEXT);").run();
   }
 
@@ -125,9 +120,9 @@ let baseAmt = Math.floor(Math.random() * 3) + 1;
     let lvlup = new Discord.RichEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL)
     .setThumbnail(lvlico)
-    .setTitle("إرتقاء بالمستوى!")
+    .setTitle("LEVEL UP.")
     .setColor("#6E0A51")
-    .addField("مستواك الحالي", curlvl + 1);
+    .addField("Your LEVEL: ", curlvl + 1);
 
     message.channel.send(lvlup).then(msg => {msg.delete(5000)});
     }
@@ -146,7 +141,7 @@ let about = sql.prepare(`SELECT * FROM about WHERE UserID = '${message.author.id
 
   let prefix = botconfig.prefix;
   let messageArray = message.content.split(" ");
-  //if (message.content.startsWith("فهد")) return message.reply({files: ["https://cdn.discordapp.com/attachments/417087715444523010/430350204168962050/image.png"]});
+  //if (message.content.startsWith("Turki Pasha")) return message.reply({files: ["https://cdn.discordapp.com/attachments/417087715444523010/430350204168962050/image.png"]});
   //if (message.content.toString()== ".") return message.channel.send("y");
   if (!message.content.startsWith(prefix)) return;
   let cmd = messageArray[0];
@@ -156,5 +151,9 @@ let about = sql.prepare(`SELECT * FROM about WHERE UserID = '${message.author.id
 
 
 });
+
+bot.on("ready", () => {
+  console.log(bot.user.tag)
+}) 
 
 bot.login("NjU1MDczMTk5MTAwNTI2NjAy.XfOydQ.wZoTQ2qeg81WHLq4yehlMZ0WJ0w");
