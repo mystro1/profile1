@@ -162,58 +162,64 @@ jimp.read(w5,async function (err, ava)  {
          })
 })
 
-                jimp.read(puser.user.displayAvatarURL, (err, ava) => {
+             jimp.read(puser.user.displayAvatarURL, (err, ava) => {
+                if (err) return console.log(err);
+                ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
                     if (err) return console.log(err);
-                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
-                        if (err) return console.log(err);
 
-                       let ava = new Image;
-                        ava.src = buf;
-                        ctx.drawImage(ava, 16, 73, 95, 95);
+                    let ava = new Image;
+                    ava.src = buf;
+                    ctx.drawImage(ava, 155, 72, 91, 91);
 
-                        ctx.font = '12px Arial';
-                        ctx.fontSize = '12px';
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "right";
-                        ctx.fillText(ad, 363, 69);
-                        
-                        //ur name
-                        ctx.font = '16px Arial';
-                        ctx.fontSize = '16px';
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "center";
-                        ctx.fillText(puser.user.username, 220, 155);
-                        ctx.font = '12px Arial';
-                        ctx.fontSize = '12px';
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`${uCoins}`, 258, 210);
-                        ctx.font = '12px Arial';
-                        ctx.fontSize = '12px';
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`${curxp}`, 258, 236);
-                        ctx.font = '12px Arial';
-                        ctx.fontSize = '12px';
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`# ${currk}`, 258, 262);
-                        ctx.font = '32px Arial';
-                        ctx.fontSize = '32px';
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`${curlvl}`, 73, 235);
-                        ctx.font = '32px Arial';
-                        ctx.fontSize = '32px';
-                        ctx.fillStyle = "#0000FF";
-                        ctx.textAlign = "center";
-                        ctx.fillText(`♥${curlikes}`, 60, 310);
-                        ctx.font = '32px Arial';
-                        ctx.fontSize = '32px';
-                        ctx.fillStyle = color;
-                        ctx.textAlign = "center";
-                        ctx.fillText(`${arrow}${currep}`, 60, 375);
-                        setTimeout(function() {
+
+                    ctx.font = '12px Arial';
+                    ctx.fontSize = '12px';
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.textAlign = "left";
+                    ctx.fillText(ad, 45, 275);
+
+                    //ur name
+                    ctx.font = '23px Arial';
+                    ctx.fontSize = '23px';
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.textAlign = "right";
+                    ctx.fillText(puser.user.username, 250, 225);
+                    ctx.font = '16px Arial';
+                    ctx.fontSize = '16px';
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`$${uCoins}`, 315, 165);
+                    ctx.font = '10px Arial';
+                    ctx.fontSize = '10px';
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`${curxp}/1000`, 200, 347);
+                    ctx.font = "12px Arial";
+                    ctx.fontSize = "12px";
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`TOTAL EXP : ${curxp}`, 200, 362);
+                    ctx.font = "20px Arial";
+                    ctx.fontSize = "20px";
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`# ${currk}`, 88, 165);
+                    ctx.font = "32px Arial";
+                    ctx.fontSize = "32px";
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`${curlvl}`, 315, 105);
+                    ctx.font = "32px Arial";
+                    ctx.fontSize = "32px";
+                    ctx.fillStyle = "#FF0000";
+                    ctx.textAlign = "center";
+                    ctx.fillText(`♥${curlikes}`, 199, 195);
+                    ctx.font = "32px Arial";
+                    ctx.fontSize = "32px";
+                    ctx.fillStyle = color;
+                    ctx.textAlign = "center";
+                    ctx.fillText(`${arrow}${currep}`, 88, 105);
+                    setTimeout(function() {
                 message.channel.send({files: [canvas.toBuffer()]});
             }, 1000)
                     })
